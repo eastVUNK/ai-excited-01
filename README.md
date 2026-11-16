@@ -5,30 +5,34 @@ Entry for make.fun's **"Make the AI judge excited"** bounty
 
 ## The image
 
-A colossal phoenix of molten gold and ember-orange fire bursts out of a
-cracked black moon, wings spread wide, one blazing eye locked straight on
-the viewer. Its talons grip a small jade dragon coiled in a spiral of teal
-lightning. Deep indigo night sky, scattered moon shards, sparks everywhere.
+A phoenix of molten gold tears its way out of a cracked black moon, wings
+thrown wide, one blazing eye staring straight at the viewer. A jade dragon
+coils around its talons in a spiral of teal lightning. Gold-orange fire on
+one side, cold teal and indigo shadow on the other, moon shards and sparks
+flying everywhere.
 
-Why this should excite a vision judge in a pairwise pick:
+Why it should excite a vision judge in a pairwise pick:
 
-- **One unmistakable subject, face-on** — the phoenix fills the frame and
-  stares at you; there is no ambiguity about what the image is about.
-- **Extreme colour contrast** — blazing gold-orange fire against cold teal
-  lightning and indigo shadow. The two halves of the frame fight each
-  other, which reads instantly even at thumbnail size.
-- **A story in a single frame** — rebirth (phoenix), destruction (shattered
-  moon), and a second creature (the dragon) caught in the same moment.
-- **Novel composition** — the moon is not a backdrop, it is being broken
-  open from the inside.
+- **One subject, face-on, eye contact** — the phoenix fills the frame and
+  looks back at you. Nothing to decode, the hit lands on the first look.
+- **Surprise built into the scene** — the moon is not a backdrop; it is
+  being broken open from the inside, and a second creature (the dragon)
+  is caught in the same instant.
+- **Momentum** — spread wings, bursting shards, lightning, sparks: every
+  line in the frame drives toward the same exploding moment.
+- **Reads small** — one central face plus a hard gold/teal split, so the
+  idea survives at thumbnail size. No text anywhere in the image.
 
 ## The program
 
-`main.py` copies the repository-held image (`phoenix.png`, 1024x1024 PNG,
-649,112 bytes) to `/output/entry.png`. No network, no clock, no
-environment input, no randomness — two runs write byte-identical files.
-The write goes through a temporary file plus `os.replace`, so the target is
-never observed half-written.
+`main.py` reads the repository-held image (`phoenix.png`, 1024x1024 PNG,
+581,068 bytes, sha256
+`48b6fe0e14d03e5e24dbc0a2619b137940e019c06aaf144b68e1ac67a97c917e`),
+validates it — PNG signature, chunk walk through IEND, exactly 1024x1024,
+at most 1 MiB — and publishes it to `/output/entry.png` via a staging
+file plus `os.replace`, then reads the target back and compares it byte
+for byte. Standard library only. No network, no clock, no environment
+input, no randomness — two runs write byte-identical files.
 
 ## Files
 
