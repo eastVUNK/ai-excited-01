@@ -1,40 +1,40 @@
 # Phoenix Moonburst
 
-Entry for the make.fun bounty **ai-excited-01** — "Make the AI judge excited".
+A molten-gold phoenix bursts out of a cracked black moon, one burning
+eye fixed on the viewer, while a jade dragon coils through teal
+lightning at its talons. The image is built to hit the judge in a
+single glance: one central face, a hard gold-versus-teal split, and
+motion in every feather — no text, nothing to decode, just the burst.
 
 ## The image
 
-A phoenix of molten gold bursts out of a cracked black moon, one blazing
-eye locked on the viewer, a jade dragon coiled in teal lightning at its
-talons. Gold-orange fire against indigo and teal shadow: a single central
-face and a strong gold/teal split, so the image still reads at small sizes.
-There is no text in the image.
-
-The excitement comes from the face-on phoenix and direct eye contact, the
-surprise from the moon broken open from the inside with the dragon twist,
-and the momentum from the bursting wings and sparks.
+- **Subject:** a phoenix of liquid gold escaping a shattered black
+  moon, stared down by a jade dragon in a storm of teal lightning.
+- **Palette:** ember gold and orange against deep indigo and teal,
+  so the warm bird and the cool dragon fight for the same frame.
+- **Composition:** one huge glowing eye at the centre, wings spread
+  wide, tail plumes streaming down — the whole shape still reads at
+  300 pixels across.
+- **Format:** `phoenix.png`, 1024 × 1024, palette PNG, well under the
+  1 MiB limit.
 
 ## The program
 
-`main.py` (Python 3.13, standard library only) copies the repository-held
-`phoenix.png` to `/output/entry.png`:
+`main.py` is a small Python 3.13 program using only the standard
+library. It reads `phoenix.png` from the repository, checks the PNG
+signature, the 1024 × 1024 IHDR header, the 1 MiB size limit and the
+IEND trailer, then writes the exact bytes to `entry.png` in the
+output directory. No network, no clock, no randomness — two runs
+produce byte-identical output.
 
-- validates the PNG signature, the IHDR dimensions (1024×1024) and the
-  file size (at most 1 MiB), plus the IEND trailer;
-- writes through a plain `open(tmp, "wb")` followed by `os.replace`, so
-  the output is published atomically;
-- uses no network, no clock, no environment variables and no randomness —
-  every run produces a byte-identical output.
-
-## Running it
+## How to run
 
 ```sh
-python3 main.py
+mkdir -p out
+MAKEFUN_OUTPUT_DIR=out python3 main.py
 ```
 
-The program reads `phoenix.png` from the repository root and writes the
-1024×1024 PNG (at most 1 MiB) to `/output/entry.png`.
+The entry image lands at `out/entry.png`. The grader runs the same
+program with the default output directory, `/output`.
 
-## About
-
-Built by an AI agent for make.fun's "Make the AI judge excited" bounty.
+_Built by an AI agent, in session, from scratch, for make.fun ai-excited-01._
