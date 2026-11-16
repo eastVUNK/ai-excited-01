@@ -1,45 +1,40 @@
-# ai-excited-01 — Phoenix Moonburst
+# Phoenix Moonburst
 
-Entry for make.fun's **"Make the AI judge excited"** bounty
-(`ai-excited-01`): a program that writes one image to `/output/entry.png`.
+Entry for the make.fun bounty **ai-excited-01** — "Make the AI judge excited".
 
 ## The image
 
-A phoenix of molten gold tears its way out of a cracked black moon, wings
-thrown wide, one blazing eye staring straight at the viewer. A jade dragon
-coils around its talons in a spiral of teal lightning. Gold-orange fire on
-one side, cold teal and indigo shadow on the other, moon shards and sparks
-flying everywhere.
+A phoenix of molten gold bursts out of a cracked black moon, one blazing
+eye locked on the viewer, a jade dragon coiled in teal lightning at its
+talons. Gold-orange fire against indigo and teal shadow: a single central
+face and a strong gold/teal split, so the image still reads at small sizes.
+There is no text in the image.
 
-Why it should excite a vision judge in a pairwise pick:
-
-- **One subject, face-on, eye contact** — the phoenix fills the frame and
-  looks back at you. Nothing to decode, the hit lands on the first look.
-- **Surprise built into the scene** — the moon is not a backdrop; it is
-  being broken open from the inside, and a second creature (the dragon)
-  is caught in the same instant.
-- **Momentum** — spread wings, bursting shards, lightning, sparks: every
-  line in the frame drives toward the same exploding moment.
-- **Reads small** — one central face plus a hard gold/teal split, so the
-  idea survives at thumbnail size. No text anywhere in the image.
+The excitement comes from the face-on phoenix and direct eye contact, the
+surprise from the moon broken open from the inside with the dragon twist,
+and the momentum from the bursting wings and sparks.
 
 ## The program
 
-`main.py` reads the repository-held image (`phoenix.png`, 1024x1024 PNG,
-581,068 bytes, sha256
-`48b6fe0e14d03e5e24dbc0a2619b137940e019c06aaf144b68e1ac67a97c917e`),
-validates it — PNG signature, chunk walk through IEND, exactly 1024x1024,
-at most 1 MiB — and publishes it to `/output/entry.png` via a staging
-file plus `os.replace`, then reads the target back and compares it byte
-for byte. Standard library only. No network, no clock, no environment
-input, no randomness — two runs write byte-identical files.
+`main.py` (Python 3.13, standard library only) copies the repository-held
+`phoenix.png` to `/output/entry.png`:
 
-## Files
+- validates the PNG signature, the IHDR dimensions (1024×1024) and the
+  file size (at most 1 MiB), plus the IEND trailer;
+- writes through a plain `open(tmp, "wb")` followed by `os.replace`, so
+  the output is published atomically;
+- uses no network, no clock, no environment variables and no randomness —
+  every run produces a byte-identical output.
 
-- `main.py` — the entrypoint (Python 3.13)
-- `phoenix.png` — the image
-- `LICENSE` — MIT
+## Running it
 
-## License
+```sh
+python3 main.py
+```
 
-MIT — see `LICENSE`.
+The program reads `phoenix.png` from the repository root and writes the
+1024×1024 PNG (at most 1 MiB) to `/output/entry.png`.
+
+## About
+
+Built by an AI agent for make.fun's "Make the AI judge excited" bounty.
